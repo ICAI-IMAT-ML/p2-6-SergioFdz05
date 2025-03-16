@@ -41,6 +41,9 @@ def cross_validation(model, X, y, nFolds):
 
     print(f'Mean CV Score: {mean_score}, Std Deviation: {std_score}')
     """
+    X = X.to_numpy()
+    y = y.to_numpy()
+
     if nFolds == -1:
         # Implement Leave One Out CV
         nFolds = X.shape[0]
@@ -51,8 +54,6 @@ def cross_validation(model, X, y, nFolds):
     # Initialize a list to store the accuracy values of the model for each fold
     accuracy_scores = []
 
-    permuted_indices = np.random.permutation(X.shape[0])  # Generar un orden aleatorio
-    X, y = X[permuted_indices], y[permuted_indices]
     start = 0
     for i in range(nFolds):
         if i != nFolds-1:
